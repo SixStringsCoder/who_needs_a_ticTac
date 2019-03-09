@@ -1,13 +1,14 @@
 /* COLORS */
 :root {
   --bg-color: #827f7f;
-  --square-color: #FFF9C4;
-  --header-color: #66BB6A;
-  --header-text-color: #F4511E;
-  --h1-color: #FFFF00;
+  --off-white: #FFF9C4;
+  --green: #66BB6A;
+  --orange: #F4511E;
+  --yellow: #FFFF00;
   --square-border: black;
 }
 
+/* BODY SET-UP */
 body {
   width: 100vw;
   height: 100vw;
@@ -19,11 +20,12 @@ body {
   background-color: var(--bg-color);
   background-image: url('data:image/svg+xml,%3Csvg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M8 16c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm0-2c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zm33.414-6l5.95-5.95L45.95.636 40 6.586 34.05.636 32.636 2.05 38.586 8l-5.95 5.95 1.414 1.414L40 9.414l5.95 5.95 1.414-1.414L41.414 8zM40 48c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm0-2c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zM9.414 40l5.95-5.95-1.414-1.414L8 38.586l-5.95-5.95L.636 34.05 6.586 40l-5.95 5.95 1.414 1.414L8 41.414l5.95 5.95 1.414-1.414L9.414 40z" fill="%239C92AC" fill-opacity="0.4" fill-rule="evenodd"/%3E%3C/svg%3E');
 }
+
 /* HEADER*/
 #heading-container {
   width: 100%;
   margin: 0 0 5% 0;
-  background-color: var(--header-color);
+  background-color: var(--green);
   border-bottom: 1px solid rgba(0, 0, 0, .3);
   text-align: center;
   display: flex;
@@ -32,14 +34,36 @@ body {
 }
 #heading-container>span {
   font-size: 8vw;
-  color: var(--header-text-color);
+  color: var(--orange);
   text-shadow: 0 2px 1px black;
 }
 #heading {
   font-size: 6vw;
-  color: var(--h1-color);
+  color: var(--yellow);
   letter-spacing: 1px;
   text-shadow: 0 2px 1px black;
+}
+
+/* WINNERBOARD */
+#winnerBoard {
+  z-index: 10;
+  animation: shakey-poo .5s infinite;
+  width: 100%;
+  height: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+#winnerBoard h1 {
+  animation: growInSize .5s 1;
+  margin: 0;
+  font-size: 5rem;
+  color: var(--orange);
+  text-shadow: 2px 2px 5px black;
+}
+#winnerSymbol {
+  color: var(--yellow);
 }
 
 /* GAMEBOARD */
@@ -59,19 +83,11 @@ body {
   width: 15vw;
   height: 15vw;
   border: 1px solid var(--square-border);
-  background-color: var(--square-color);
+  background-color: var(--off-white);
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 15vw;
-}
-
-@keyframes shakey-poo {
-  0% { transform: skew(0deg) }
-  25% { transform: skew(5deg) }
-  50% { transform: skew(0deg) }
-  75% { transform: skew(-5deg) }
-  100% { transform: skew(0deg) }
 }
 
 .xo-sign {
@@ -84,4 +100,19 @@ body {
 /* Winner */
 .winning-color {
   background-color: #f75000;
+}
+
+
+/* ANIMATIONS */
+@keyframes growInSize {
+  from{ font-size: 0;}
+  to{ font-size: 5rem;}
+}
+
+@keyframes shakey-poo {
+  0% { transform: skew(0deg) }
+  25% { transform: skew(5deg) }
+  50% { transform: skew(0deg) }
+  75% { transform: skew(-5deg) }
+  100% { transform: skew(0deg) }
 }
