@@ -3,6 +3,7 @@ const squares = document.querySelectorAll('.square');
 const winnerBoard = document.querySelector('#winnerBoard');
 const squareID = ["tl", "tc", "tr", "cl", "cc", "cr", "bl", "bc", "br"];
 let myTurn = true;
+console.log("start " + myTurn);
 let numberOfPLays = 0; // start comparing when > 4
 const boardValues = {
   tl: "",
@@ -20,22 +21,14 @@ const boardIDs = ["tl", "tc", "tr", "cl", "cc", "cr", "bl", "bc", "br"];
 
 const winningCombos = [
   ["tl", "tc", "tr"],
+  ["cl", "cc", "cr"],
+  ["bl", "bc", "br"],
   ["tl", "cl", "bl"],
-  ["tl", "cc", "br"],
   ["tc", "cc", "br"],
   ["tr", "cr", "br"],
   ["tr", "cc", "bl"],
-  ["cl", "cc", "cr"],
-  ["bl", "bc", "br"]
+  ["tl", "cc", "br"],
 ];
-
-// 8 possible winning combos
-    // from top left - 3 combos (["tl", "tc", "tr"], ["tl", "cl", "bl"], ["tl", "cc", "br"])
-    // from top center - 1 combo (["tc", "cc", "br"])
-    // from top right - 2 combos (["tr", "cr", "br"], ["tr", "cc", "bl"])
-    // from center left - 1 combo (["cl", "cc", "cr"])
-    // from bottom left - 1 combo (["bl", "bc", "br"])
-
 
 (function makeGameBoard() {
   const spaces = 8;
@@ -61,7 +54,8 @@ gameboard.addEventListener('click', (square) => {
 
 const addBoardValues = (target, sign) => {
   boardValues[target] = sign;
-  checkWinner(boardValues)
+  // Only check for winner after
+  numberOfPLays < 4 ? null : checkWinner(boardValues);
 }
 
 const checkWinner = () => {
@@ -73,14 +67,32 @@ const checkWinner = () => {
          boardValues[sp1] === boardValues[sp2]
          &&
          boardValues[sp2] === boardValues[sp3]) {
-          let winner = boardValues[sp1];
-          setTimeout(winngMsg, 1000, winner);
-          return boardValues[sp1];
+
+           let winner = boardValues[sp1];
+           setTimeout(winngMsg, 1000, winner);
+           return boardValues[sp1];
          }
     }
+    // console.log(boardValues[sp1], boardValues[sp2], boardValues[sp3]);
+    console.log(myTurn);
   }
 }
 
 const winngMsg = (winner) => {
   winnerBoard.innerHTML = `<h1>Winner is <span id="winnerSymbol">${winner}</span></h1>`;
 }
+
+
+const playAgain = () => {
+  // clear out boardValues object
+  for (let key in boardValues) {
+    boardValues[key] = "";
+  }
+  // clear out squares array
+  const squares = document.querySelectorAll('.square');
+  squares.forEach(square => square.innerHTML = "");
+  // Remove Winner sign
+  winnerBoard.innerHTML = "";
+}
+
+document.querySelector('button').addEventListener('click', playAgain);
