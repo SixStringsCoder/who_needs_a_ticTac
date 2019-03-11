@@ -1,6 +1,8 @@
 const gameboard = document.getElementById('tictactoeContainer');
 const squares = document.querySelectorAll('.square');
 const winnerBoard = document.querySelector('#winnerBoard');
+const x = document.querySelector('#x');
+const o = document.querySelector('#o');
 const squareID = ["tl", "tc", "tr", "cl", "cc", "cr", "bl", "bc", "br"];
 let myTurn = true;
 console.log("start " + myTurn);
@@ -24,11 +26,26 @@ const winningCombos = [
   ["cl", "cc", "cr"],
   ["bl", "bc", "br"],
   ["tl", "cl", "bl"],
-  ["tc", "cc", "br"],
+  ["tc", "cc", "bc"],
   ["tr", "cr", "br"],
   ["tr", "cc", "bl"],
   ["tl", "cc", "br"],
 ];
+
+const whosTurn = (myTurn) => {
+  if (myTurn) {
+    x.classList.add('yourTurn');
+    o.classList.remove('yourTurn');
+  } else {
+    o.classList.add('yourTurn');
+    x.classList.remove('yourTurn');
+  }
+}
+
+const removeTurn = () => {
+  x.classList.remove('yourTurn');
+  o.classList.remove('yourTurn');
+}
 
 (function makeGameBoard() {
   const spaces = 8;
@@ -38,6 +55,7 @@ const winningCombos = [
     `;
     gameboard.innerHTML += square;
   }
+    whosTurn(myTurn);
 })();
 
 // Add X and O to board after clicking squares
@@ -52,8 +70,11 @@ gameboard.addEventListener('click', (square) => {
   numberOfPLays += 1;
 });
 
+
+
 const addBoardValues = (target, sign) => {
   boardValues[target] = sign;
+  whosTurn(myTurn);
   // Only check for winner after
   numberOfPLays < 4 ? null : checkWinner(boardValues);
 }
@@ -74,14 +95,13 @@ const checkWinner = () => {
          }
     }
     // console.log(boardValues[sp1], boardValues[sp2], boardValues[sp3]);
-    console.log(myTurn);
   }
 }
 
 const winngMsg = (winner) => {
   winnerBoard.innerHTML = `<h1>Winner is <span id="winnerSymbol">${winner}</span></h1>`;
+  removeTurn();
 }
-
 
 const playAgain = () => {
   // clear out boardValues object
