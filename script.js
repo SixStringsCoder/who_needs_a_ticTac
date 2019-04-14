@@ -70,8 +70,6 @@ gameboard.addEventListener('click', (square) => {
   numberOfPLays += 1;
 });
 
-
-
 const addBoardValues = (target, sign) => {
   boardValues[target] = sign;
   whosTurn(myTurn);
@@ -88,10 +86,12 @@ const checkWinner = () => {
          boardValues[sp1] === boardValues[sp2]
          &&
          boardValues[sp2] === boardValues[sp3]) {
-
            let winner = boardValues[sp1];
            setTimeout(winngMsg, 1000, winner);
            return boardValues[sp1];
+         }
+         if (boardValues[key] === true) {
+           console.log("Tie");
          }
     }
     // console.log(boardValues[sp1], boardValues[sp2], boardValues[sp3]);

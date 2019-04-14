@@ -11,7 +11,7 @@
 /* BODY SET-UP */
 body {
   width: 100vw;
-  height: 100vw;
+  /* height: 100vw; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -63,7 +63,9 @@ body {
   margin: 0;
   font-size: 9rem;
   color: var(--orange);
-  text-shadow: 2px 2px 15px black;
+  text-shadow: 9px 8px 15px black;
+  background: white;
+  padding: 0 20px;
 }
 #winnerSymbol {
   color: var(--yellow);
@@ -113,10 +115,10 @@ body {
 }
 
 #playAgain-btn {
-  margin: 10px;
-  padding: 15px;
+  margin: 20px;
+  padding: 17px;
   font-family: 'Righteous', cursive;
-  font-size: 1.2rem;
+  font-size: 2.2rem;
   background-color: var(--orange);
   color: #fff;
   box-shadow: 0 0 5px black;
@@ -161,4 +163,57 @@ body {
 
 .winnerBlink {
   animation: blink .25 infinite;
+}
+
+
+/* MEDIA QUERIES */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  #tictactoeContainer {
+    width: 90%;
+    height: 90%;
+  }
+
+  .square {
+    width: 26vw;
+    height: 26vw;
+    margin: 15px;
+    font-size: 25vw;
+  }
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  /* #tictactoeContainer {
+    width: 85%;
+    height: 85%;
+  }
+  .square {
+    width: 26vw;
+    height: 22vw;
+    font-size: 19vw;
+  } */
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  #tictactoeContainer {
+    width: 60%;
+    height: 100vh;
+  }
+  .square {
+    width: 17vw;
+    height: 14vw;
+    margin: 9px;
+    font-size: 17vw;
+  }
+
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+
 }
